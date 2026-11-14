@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Payday Ledger</title>
+<title>B&amp;M Tracker</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,11 +58,19 @@ p{margin:0}
 .nav{display:flex;gap:2px;flex-wrap:wrap}
 .nav a{padding:8px 13px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:500}
 .nav a:hover{background:var(--surface);color:var(--ink)}
+.nav a{transition:background-color .18s ease,color .18s ease,transform .18s ease}
+.nav a:hover{transform:translateY(-1px)}
 .nav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.nav a.settings-link{width:38px;height:38px;padding:8px;display:grid;place-items:center}
+.nav a.settings-link svg{display:block;width:21px;height:21px}
+.nav a.settings-link:hover svg{transform:rotate(24deg)}
+.nav a.settings-link svg{transition:transform .25s ease}
 .fab{position:fixed;z-index:20;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:8px;border:0;background:var(--blue);color:#fff;font-weight:600;border-radius:999px;padding:13px 20px 13px 16px;box-shadow:0 6px 20px rgba(20,60,140,.35);cursor:pointer}
 :root[data-theme="dark"] .fab{color:#06162f}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fab{color:#06162f}}
 .fab svg{width:20px;height:20px}
+.fab{transition:transform .18s ease,box-shadow .18s ease}
+.fab:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(20,60,140,.4)}
 .banner{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:var(--amber-soft);color:var(--ink);border:1px solid var(--amber);border-radius:12px;padding:11px 14px;margin-bottom:14px}
 .banner b{color:var(--amber)}
 .banner .sp{flex:1;min-width:220px}
@@ -91,6 +99,8 @@ p{margin:0}
 /* buttons & forms */
 .btn{text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .btn:hover{background:var(--surface2)}
+.btn{transition:transform .15s ease,background-color .15s ease,box-shadow .15s ease}
+.btn:active{transform:scale(.97)}
 .btn.pri{background:var(--blue);border-color:var(--blue);color:#fff}
 :root[data-theme="dark"] .btn.pri{color:#06162f}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.pri{color:#06162f}}
@@ -100,7 +110,7 @@ p{margin:0}
 .btn.sm{padding:5px 10px;font-size:.88rem}
 .btn svg{width:16px;height:16px}
 label.f{display:flex;flex-direction:column;gap:5px;font-weight:500;font-size:.9rem;min-width:0}
-.in,select.in{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 11px;width:100%;min-width:0}
+.in,select.in{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 11px;width:100%;min-width:0;transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease}
 .in:focus{outline:3px solid var(--focus);outline-offset:0}
 .amt{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding-left:11px}
 .amt:focus-within{outline:3px solid var(--focus)}
@@ -161,8 +171,16 @@ label.f{display:flex;flex-direction:column;gap:5px;font-weight:500;font-size:.9r
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .remain.neg{color:#2a0805}}
 .remain b{font-family:var(--display);font-size:1.3rem;font-variant-numeric:tabular-nums}
 .tabs{display:inline-flex;gap:4px;background:var(--surface2);border:1px solid var(--line);border-radius:11px;padding:3px}
-.tabs button{border:0;background:transparent;border-radius:8px;padding:6px 14px;font-weight:500;color:var(--muted);cursor:pointer}
+.tabs button{border:0;background:transparent;border-radius:8px;padding:6px 14px;font-weight:500;color:var(--muted);cursor:pointer;transition:background-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease}
+.tabs button:hover{transform:translateY(-1px);color:var(--ink)}
 .tabs button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.tabs button[aria-pressed="true"]:active{transform:scale(.97)}
+.entry-context{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:11px;background:var(--blue-soft);color:var(--blue-ink);font-size:.88rem}
+.entry-context strong{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.entry-tabs{display:flex;flex-direction:column;gap:7px}
+.entry-tabs small{display:block;color:var(--muted);font-size:.76rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.entry-tab-group{display:flex;flex-wrap:wrap;gap:4px}
+.payroll-tag{display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 7px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:.72rem;font-weight:600}
 
 /* tables */
 .scroll{overflow-x:auto;max-width:100%}
@@ -178,7 +196,8 @@ tr.hl td{background:var(--surface2);font-weight:600}
 tr.hl td:first-child{background:var(--surface2)}
 
 /* accounts */
-.acct{padding:16px;display:flex;flex-direction:column;gap:8px}
+.acct{padding:16px;display:flex;flex-direction:column;gap:8px;transition:transform .18s ease,box-shadow .18s ease}
+.acct:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,35,60,.1)}
 .acct .nm{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .kind{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
 .bal{font-family:var(--display);font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums}
@@ -261,8 +280,8 @@ tr.hl td:first-child{background:var(--surface2)}
 /* modal */
 #modal[hidden]{display:none}
 #modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
-.scrim{position:absolute;inset:0;background:rgba(10,16,28,.55)}
-.dlg{position:relative;width:min(520px,100%);max-height:calc(100% - 8px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:18px 18px 16px}
+.scrim{position:absolute;inset:0;background:rgba(10,16,28,.55);animation:scrim-in .18s ease both}
+.dlg{position:relative;width:min(520px,100%);max-height:calc(100% - 8px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:18px 18px 16px;animation:dialog-in .2s cubic-bezier(.2,.8,.2,1) both}
 .dlg h2{margin-bottom:10px}
 .dlg form{display:flex;flex-direction:column;gap:13px}
 .dlg .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px}
@@ -277,12 +296,17 @@ tr.hl td:first-child{background:var(--surface2)}
 #toast{position:fixed;z-index:60;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:500;max-width:calc(100% - 32px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .lock{max-width:460px;margin:60px auto;text-align:center;padding:28px}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .15s}}
+@keyframes view-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dialog-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes scrim-in{from{opacity:0}to{opacity:1}}
+@keyframes entry-swap{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:no-preference){.view-enter{animation:view-in .24s ease both}.view-enter>.grid,.view-enter>section,.view-enter>.pagehead{animation:view-in .32s ease both}.bar i{transition:width .45s cubic-bezier(.2,.8,.2,1)}.card{transition:box-shadow .15s}.entry-swap{animation:entry-swap .18s ease both}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 
 <div class="wrap">
   <header class="top">
-    <div class="brand"><i aria-hidden="true">₱</i>Payday Ledger</div>
+    <div class="brand"><i aria-hidden="true">₱</i>B&amp;M Tracker</div>
     <div class="monthbar" role="group" aria-label="Month">
       <button class="ibtn" data-act="month-prev" aria-label="Previous month"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
       <b id="monthLabel" aria-live="polite"></b>
@@ -294,7 +318,7 @@ tr.hl td:first-child{background:var(--surface2)}
       <a href="#bills" data-r="bills">Monthly Bills</a>
       <a href="#bank" data-r="bank">Bank Status</a>
       <a href="#reports" data-r="reports">Reports</a>
-      <a href="#setup" data-r="setup">Settings</a>
+      <a class="settings-link" href="#setup" data-r="setup" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19.4 15 .1.1a1.8 1.8 0 1 1-2.5 2.5l-.1-.1a1.8 1.8 0 0 0-3 .9v.2a1.8 1.8 0 1 1-3.6 0v-.2a1.8 1.8 0 0 0-3-.9l-.1.1a1.8 1.8 0 1 1-2.5-2.5l.1-.1a1.8 1.8 0 0 0-.9-3h-.2a1.8 1.8 0 1 1 0-3.6h.2a1.8 1.8 0 0 0 .9-3l-.1-.1a1.8 1.8 0 1 1 2.5-2.5l.1.1a1.8 1.8 0 0 0 3-.9v-.2a1.8 1.8 0 1 1 3.6 0v.2a1.8 1.8 0 0 0 3 .9l.1-.1a1.8 1.8 0 1 1 2.5 2.5l-.1.1a1.8 1.8 0 0 0 .9 3h.2a1.8 1.8 0 1 1 0 3.6h-.2a1.8 1.8 0 0 0-.9 3Z"/></svg></a>
     </nav>
     <button class="btn sm" id="themeBtn" data-act="theme-cycle" type="button"></button>
   </header>
@@ -627,15 +651,16 @@ function calcMonth(k){
   });
   return t;
 }
-function allTx(){return Object.keys(S.tx).map(function(id){var t=S.tx[id];return{id:id,account:t.account,type:t.type,amount:t.amount,date:t.date,note:t.note,bill:t.bill}})}
+function allTx(){return Object.keys(S.tx).map(function(id){var t=S.tx[id];return{id:id,account:t.account,toAccount:t.toAccount||'',type:t.type,amount:t.amount,date:t.date,note:t.note,bill:t.bill,payrollIncome:t.payrollIncome||''}})}
 function balanceAt(id,date){
   var a=S.accounts[id]; if(!a) return null;
   if(date&&date<a.asOf) return null;
   var b=a.opening||0;
   allTx().forEach(function(t){
-    if(t.account!==id||t.date<a.asOf) return;
+    if(t.date<a.asOf) return;
     if(date&&t.date>date) return;
-    b+=t.type==='deposit'?t.amount:-t.amount;
+    if(t.account===id)b+=t.type==='deposit'?t.amount:-t.amount;
+    else if(t.type==='transfer'&&t.toAccount===id)b+=t.amount;
   });
   return r2(b);
 }
@@ -654,6 +679,18 @@ function syncBillTx(it){
   var tid='bill-'+it.id,a=it.account&&S.accounts[it.account];
   if(it.paid&&a){setDoc('tx',tid,{account:it.account,type:it.group==='savings'?'deposit':'withdraw',amount:it.amount,date:it.paidOn||todayStr(),note:it.name,bill:it.id})}
   else if(S.tx[tid]){delDoc('tx',tid)}
+}
+function syncPayrollTx(income,k){
+  var tid='income-'+income.id;
+  if(income.kind==='income'){
+    var payroll=acctList().filter(function(a){return a.payroll})[0];
+    if(payroll){
+      var c=S.settings.cutoffs.filter(function(x){return x.id===income.cutoff})[0];
+      setDoc('tx',tid,{account:payroll.id,type:'deposit',amount:income.amount,date:cutoffDate(k,c?c.day:1),note:income.label,bill:null,payrollIncome:income.id});
+      return;
+    }
+  }
+  if(S.tx[tid])delDoc('tx',tid);
 }
 function togglePaid(k,id){
   var m=clone(getMonth(k)),it=m.items.filter(function(i){return i.id===id})[0]; if(!it) return;
@@ -687,7 +724,7 @@ function render(){
   else if(busy) html='<div class="empty">Loading your ledger…</div>';
   else html=banner()+({dashboard:pgDashboard,bills:pgBills,bank:pgBank,reports:pgReports,setup:pgSetup})[ui.route]();
   $('.fab').hidden=!!(isLocked()||ui.locked);
-  v.innerHTML=html; renderProfiles(); drawCharts();
+  v.innerHTML='<div class="view-enter">'+html+'</div>'; renderProfiles(); drawCharts();
   if(isLocked()){var up=$('#u-pw');if(up&&!document.activeElement.closest('#modal'))try{up.focus()}catch(e){}}
 }
 function drawCharts(){charts.forEach(function(c){var el=document.getElementById(c.id);if(el)el.innerHTML=c.fn(Math.max(280,el.clientWidth))})}
@@ -821,10 +858,10 @@ function pgBank(){
   if(!accts.length) return html+'<div class="card empty">No accounts yet. Add MariBank, Maya, GCash or any account you use.<br><button class="btn pri" data-act="acct-add">Add your first account</button></div>';
   html+='<div class="grid g-3">'+accts.map(function(a){
     var b=balanceAt(a.id),em=(a.earmarks||[]),emT=sum(em),own=r2(b-emT);
-    var bgc=bgCss(a.bg);return '<article class="card acct'+(bgc?' has-bg':'')+'"'+(bgc?' style="'+bgc+'"':'')+'><div class="nm"><div><b>'+esc(a.name)+'</b><div class="kind">'+kindLabel(a.kind)+(a.inTotal?'':' · not in total')+'</div></div><div class="tools"><button class="ibtn" data-act="acct-bg" data-id="'+a.id+'" aria-label="Change card background for '+esc(a.name)+'">'+ICON.image+'</button><button class="ibtn" data-act="acct-edit" data-id="'+a.id+'" aria-label="Edit '+esc(a.name)+'">'+ICON.edit+'</button></div></div>'
+    var bgc=bgCss(a.bg);return '<article class="card acct'+(bgc?' has-bg':'')+'"'+(bgc?' style="'+bgc+'"':'')+'><div class="nm"><div><b>'+esc(a.name)+'</b><div class="kind">'+kindLabel(a.kind)+(a.inTotal?'':' · not in total')+'</div>'+(a.payroll?'<span class="payroll-tag">Payroll</span>':'')+'</div><div class="tools"><button class="ibtn" data-act="acct-bg" data-id="'+a.id+'" aria-label="Change card background for '+esc(a.name)+'">'+ICON.image+'</button><button class="ibtn" data-act="acct-edit" data-id="'+a.id+'" aria-label="Edit '+esc(a.name)+'">'+ICON.edit+'</button></div></div>'
       +'<div class="bal">'+money(b)+'</div>'
       +(em.length?'<ul class="em"><li><span>Yours</span><span class="num">'+money(own)+'</span></li>'+em.map(function(e){return '<li><span>'+esc(e.label)+'</span><span class="num">'+money(e.amount)+'</span></li>'}).join('')+'</ul>':'')
-      +'<div class="btns"><button class="btn sm" data-act="move" data-acct="'+a.id+'" data-mtype="deposit">'+ICON.plus+'Deposit</button><button class="btn sm" data-act="move" data-acct="'+a.id+'" data-mtype="withdraw">Withdraw</button></div></article>';
+      +'<div class="btns"><button class="btn sm" data-act="move" data-acct="'+a.id+'" data-mtype="deposit">'+ICON.plus+'Deposit</button><button class="btn sm" data-act="move" data-acct="'+a.id+'" data-mtype="withdraw">Withdraw</button><button class="btn sm" data-act="move" data-acct="'+a.id+'" data-mtype="transfer">Transfer</button></div></article>';
   }).join('')+'</div>';
   /* tracker */
   var months=[shiftYM(k,-2),shiftYM(k,-1),k,shiftYM(k,1)];
@@ -836,10 +873,10 @@ function pgBank(){
   html+='<div class="grid g-2" style="margin-top:14px"><section class="card"><div class="sec-h"><h2>Savings progress</h2><span class="sub">Total balance</span></div><div class="chart pad" style="padding-top:0" id="ch-bank"></div></section>';
   charts.push({id:'ch-bank',fn:function(w){return lineChart(balanceSeries(),w)}});
   var txs=allTx().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0}).slice(0,20);
-  html+='<section class="card"><div class="sec-h"><h2>Recent activity</h2><button class="btn sm" data-act="move" data-acct="" data-mtype="deposit">'+ICON.plus+'Record</button></div>';
-  html+=txs.length?'<ul class="tx">'+txs.map(function(t){var a=S.accounts[t.account];var dep=t.type==='deposit';
-    return '<li><span class="d">'+shortDate(t.date)+'</span><span class="n">'+esc(t.note||(dep?'Deposit':'Withdrawal'))+'<small>'+esc(a?a.name:'Deleted account')+(t.bill?' · from a bill':'')+'</small></span><span class="m '+(dep?'pos':'neg')+'">'+(dep?'+':'−')+money(t.amount).replace('−','')+'</span>'
-      +(t.bill?'<span style="width:34px"></span>':'<button class="ibtn" data-act="edit-tx" data-id="'+t.id+'" aria-label="Edit transaction">'+ICON.edit+'</button>')+'</li>'}).join('')+'</ul>':'<div class="empty">No deposits or withdrawals yet. Paying a bill from an account also shows up here.</div>';
+  html+='<section class="card"><div class="sec-h"><div><h2>Recent bank activity</h2><span class="sub">Deposits, withdrawals and transfers</span></div><button class="btn sm" data-act="move" data-acct="" data-mtype="deposit">'+ICON.plus+'Record</button></div>';
+  html+=txs.length?'<ul class="tx">'+txs.map(function(t){var a=S.accounts[t.account],to=S.accounts[t.toAccount];var dep=t.type==='deposit',transfer=t.type==='transfer';
+    return '<li><span class="d">'+shortDate(t.date)+'</span><span class="n">'+esc(t.note||(transfer?'Transfer to '+(to?to.name:'deleted account'):dep?'Deposit':'Withdrawal'))+'<small>'+esc(a?a.name:'Deleted account')+(transfer?' → '+esc(to?to.name:'Deleted account'):'')+(t.payrollIncome?' · Payroll':'')+(t.bill?' · from a bill':'')+'</small></span><span class="m '+(dep?'pos':'neg')+'">'+(dep?'+':'−')+money(t.amount).replace('−','')+'</span>'
+      +(t.bill||t.payrollIncome?'<span style="width:34px"></span>':'<button class="ibtn" data-act="edit-tx" data-id="'+t.id+'" aria-label="Edit transaction">'+ICON.edit+'</button>')+'</li>'}).join('')+'</ul>':'<div class="empty">No bank activity yet. Record a deposit, withdrawal or transfer here. Paying a bill from an account also appears here.</div>';
   html+='</section></div><p class="foot">Balances start from each account’s starting balance and date, then follow your deposits and withdrawals. '+storageNote()+'</p>';
   return html;
 }
@@ -934,9 +971,19 @@ function confirmClick(btn,fn){
 
 /* ---------- modal: entries ---------- */
 var modalReturn=null;
-function openModal(html,title){
+function openModal(html,title,reuse){
+  var m=$('#modal');
+  if(reuse&&!m.hidden){
+    var current=$('.dlg',m);
+    if(current){
+      current.innerHTML='<h2 id="dlg-t">'+esc(title)+'</h2><div class="entry-swap">'+html+'</div>';
+      var next=$('input:not([type=radio]):not([type=checkbox]),select',current);
+      if(next)setTimeout(function(){next.focus()},30);
+      return;
+    }
+  }
   modalReturn=document.activeElement;
-  var m=$('#modal');m.innerHTML='<div class="scrim" data-act="close"></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t"><h2 id="dlg-t">'+esc(title)+'</h2>'+html+'</div>';
+  m.innerHTML='<div class="scrim" data-act="close"></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t"><h2 id="dlg-t">'+esc(title)+'</h2>'+html+'</div>';
   m.hidden=false;document.documentElement.style.overflow='hidden';
   var f=$('input:not([type=radio]):not([type=checkbox]),select',m);if(f)setTimeout(function(){f.focus()},30);
 }
@@ -954,18 +1001,19 @@ function segHtml(name,items,sel,cls){return '<div class="seg '+(cls||'')+'" role
 function amtField(id,val){return '<div class="amt"><span aria-hidden="true">₱</span><input id="'+id+'" inputmode="decimal" autocomplete="off" placeholder="0.00" value="'+esc(val==null?'':val)+'" aria-label="Amount in pesos"></div>'}
 function catList(g){return (S.settings.cats[g]||[]).map(function(n){return '<option value="'+esc(n)+'">'}).join('')}
 
-function openEntry(o){
+function openEntry(o,reuse){
   o=o||{};var type=o.type||'expense',edit=null,editKind=null;
   if(o.editItem){var it=getMonth(o.editItem.k).items.filter(function(i){return i.id===o.editItem.id})[0];if(!it)return;edit={k:o.editItem.k,it:it};type=it.group==='savings'?'savings':'expense'}
   if(o.editIncome){var ie=getMonth(o.editIncome.k).income.filter(function(i){return i.id===o.editIncome.id})[0];if(!ie)return;edit={k:o.editIncome.k,inc:ie};type='income'}
   if(o.editTx){var tx=S.tx[o.editTx];if(!tx)return;edit={tx:Object.assign({id:o.editTx},tx)};type='move'}
   if(type==='move'&&!acctList().length){toast('Add an account first on Bank Status');location.hash='#bank';return}
   var k=(edit&&edit.k)||ui.month,cut=(edit&&((edit.it&&edit.it.cutoff)||(edit.inc&&edit.inc.cutoff)))||o.cutoff||activeCutoff(ui.month);
-  var tabs=edit?'':'<div class="tabs" role="group" aria-label="What are you adding?" style="align-self:flex-start;flex-wrap:wrap">'+[['expense','Expense'],['income','Income'],['savings','Savings'],['move','Deposit / Withdraw']].map(function(t){return '<button type="button" data-act="tab" data-type="'+t[0]+'" aria-pressed="'+(t[0]===type)+'">'+t[1]+'</button>'}).join('')+'</div>';
+  var tabs=edit?'':'<div class="entry-tabs" aria-label="Choose what to record"><div><small>Monthly Bills</small><div class="entry-tab-group tabs" role="group" aria-label="Monthly Bills">'+[['expense','Expense'],['income','Income'],['savings','Savings']].map(function(t){return '<button type="button" data-act="tab" data-type="'+t[0]+'" aria-pressed="'+(t[0]===type)+'">'+t[1]+'</button>'}).join('')+'</div></div><div><small>Bank Status</small><div class="entry-tab-group tabs" role="group" aria-label="Bank Status">'+[['deposit','Deposit'],['withdraw','Withdraw'],['transfer','Transfer']].map(function(t){return '<button type="button" data-act="tab" data-type="move" data-mtype="'+t[0]+'" aria-pressed="'+(type==='move'&&(o.mtype||'deposit')===t[0])+'">'+t[1]+'</button>'}).join('')+'</div></div></div>';
+  var context=type==='move'?'<div class="entry-context"><div><strong>Bank Status</strong>Bank activity changes account balances, not your monthly bill plan.</div></div>':'<div class="entry-context"><div><strong>Monthly Bills</strong>'+(type==='savings'?'Add a planned savings amount for this month.':'Record monthly income or a planned expense.')+'</div></div>';
   var body='',title='';
   if(type==='expense'||type==='savings'){
     var it2=edit&&edit.it,grp=type==='savings'?'savings':(it2?it2.group:(o.group&&o.group!=='savings'?o.group:'needs'));
-    title=edit?'Edit '+(type==='savings'?'savings':'expense'):(type==='savings'?'Add savings':'Add expense');
+    title=edit?'Edit '+(type==='savings'?'savings':'expense'):(type==='savings'?'Add Savings':'Add Expense');
     body=(type==='expense'?'<div class="f" style="display:flex;flex-direction:column;gap:5px"><b style="font-size:.9rem;font-weight:500">Group</b>'+segHtml('grp',[['needs','Needs'],['wants','Wants']],grp)+'</div>':'<input type="hidden" name="grp" value="savings">')
       +'<label class="f">Name or category<input class="in" id="f-name" list="cat-list" maxlength="60" autocomplete="off" placeholder="'+(type==='savings'?'e.g. Gala / Emergency':'e.g. Motor')+'" value="'+esc(it2?it2.name:'')+'"><datalist id="cat-list">'+catList(grp)+'</datalist></label>'
       +'<div class="row2"><label class="f">Amount'+amtField('f-amt',it2?it2.amount:'')+'</label><label class="f">Cutoff<select class="in" id="f-cut">'+cutOptions(cut)+'</select></label></div>'
@@ -973,22 +1021,25 @@ function openEntry(o){
       +'<label class="f">'+(type==='savings'?'Deposit into account (optional)':'Pay from account (optional)')+'<select class="in" id="f-acct">'+acctOptions(it2?it2.account:'','None')+'</select></label>'
       +'<p class="sub" style="margin-top:-6px">When paid, the chosen account’s balance updates by itself.</p>';
   }else if(type==='income'){
-    var ie2=edit&&edit.inc;title=edit?'Edit income':'Add income';
+    var ie2=edit&&edit.inc,payAcct=acctList().filter(function(a){return a.payroll})[0];title=edit?'Edit income':'Add income';
     body='<div class="f" style="display:flex;flex-direction:column;gap:5px"><b style="font-size:.9rem;font-weight:500">Type</b>'+segHtml('kind',[['income','Salary / income'],['deduction','Tax / deduction']],ie2?ie2.kind:(o.kind||'income'))+'</div>'
       +'<label class="f">Label<input class="in" id="f-name" list="inc-list" maxlength="40" autocomplete="off" placeholder="e.g. Salary" value="'+esc(ie2?ie2.label:'')+'"><datalist id="inc-list"><option value="Salary"><option value="Tax"><option value="Bonus"><option value="13th month"><option value="Other income"></datalist></label>'
       +'<div class="row2"><label class="f">Amount'+amtField('f-amt',ie2?ie2.amount:'')+'</label><label class="f">Cutoff<select class="in" id="f-cut">'+cutOptions(cut)+'</select></label></div>'
-      +'<label class="f">Month<input class="in" id="f-month" type="month" value="'+k+'"></label>';
+      +'<label class="f">Month<input class="in" id="f-month" type="month" value="'+k+'"></label>'
+      +'<p class="sub">'+(payAcct?'Income is automatically deposited into your Payroll account, '+esc(payAcct.name)+'.':'Assign a Payroll account in Bank Status to automatically deposit income there.')+'</p>';
   }else{
-    var t2=edit&&edit.tx;title=edit?'Edit transaction':'Deposit or withdraw';
+    var t2=edit&&edit.tx,mt=t2?t2.type:(o.mtype==='withdraw'?'withdraw':o.mtype==='transfer'?'transfer':'deposit'),isTransfer=mt==='transfer';
+    title=edit?'Edit bank activity':isTransfer?'Transfer between accounts':mt==='withdraw'?'Withdraw from account':'Deposit to account';
     body='<label class="f">Account<select class="in" id="f-acct">'+acctOptions(t2?t2.account:(o.account||''),o.account||t2?'':'Choose account')+'</select></label>'
-      +'<div class="f" style="display:flex;flex-direction:column;gap:5px"><b style="font-size:.9rem;font-weight:500">Type</b>'+segHtml('mt',[['deposit','Deposit'],['withdraw','Withdraw']],t2?t2.type:(o.mtype||'deposit'))+'</div>'
+      +'<label class="f" id="f-to-wrap"'+(isTransfer?'':' hidden')+'>Transfer to<select class="in" id="f-to-acct">'+acctOptions(t2?t2.toAccount||'':'','Choose destination account')+'</select></label>'
+      +(edit?'<div class="f" style="display:flex;flex-direction:column;gap:5px"><b style="font-size:.9rem;font-weight:500">Type</b>'+segHtml('mt',[['deposit','Deposit'],['withdraw','Withdraw'],['transfer','Transfer']],mt)+'</div>':'<input type="radio" name="mt" value="'+mt+'" checked hidden>')
       +'<div class="row2"><label class="f">Amount'+amtField('f-amt',t2?t2.amount:'')+'</label><label class="f">Date<input class="in" id="f-date" type="date" value="'+(t2?t2.date:todayStr())+'"></label></div>'
-      +'<label class="f">Note (optional)<input class="in" id="f-name" maxlength="80" placeholder="e.g. Savings top-up" value="'+esc(t2?t2.note:'')+'"></label>';
+      +'<label class="f">Note (optional)<input class="in" id="f-name" maxlength="80" placeholder="'+(isTransfer?'e.g. Move savings':'e.g. Savings top-up')+'" value="'+esc(t2?t2.note:'')+'"></label>';
   }
   var del=edit?'<button type="button" class="btn danger sp" data-act="modal-del">Delete</button>':'';
-  var form=tabs+'<form id="entry" data-type="'+type+'" novalidate>'+body+'<div class="err" id="f-err" role="alert" hidden></div><div class="acts">'+del+'<button type="button" class="btn" data-act="close">Cancel</button><button type="submit" class="btn pri">'+(edit?'Save':'Add')+'</button></div></form>';
+  var form=context+tabs+'<form id="entry" data-type="'+type+'" novalidate>'+body+'<div class="err" id="f-err" role="alert" hidden></div><div class="acts">'+del+'<button type="button" class="btn" data-act="close">Cancel</button><button type="submit" class="btn pri">'+(edit?'Save':'Add')+'</button></div></form>';
   entryCtx={type:type,edit:edit};
-  openModal(form,title);
+  openModal(form,title,reuse);
 }
 var entryCtx=null;
 function formErr(msg,id){var e=$('#f-err');e.textContent=msg;e.hidden=false;if(id){var f=document.getElementById(id);if(f)f.focus()}}
@@ -1015,24 +1066,32 @@ function submitEntry(){
     var oi=edit&&edit.inc,ni={id:oi?oi.id:uid(),label:nm,kind:kd,amount:am,cutoff:ct};
     if(oi&&edit.k!==mk2){var om2=clone(getMonth(edit.k));om2.income=om2.income.filter(function(i){return i.id!==oi.id});setDoc('months',edit.k,om2)}
     var m2=clone(getMonth(mk2));var ix2=m2.income.findIndex(function(i){return i.id===ni.id});if(ix2>=0)m2.income[ix2]=ni;else m2.income.push(ni);
-    setDoc('months',mk2,m2);closeModal();toast(edit?'Saved':'Added '+nm);
+    setDoc('months',mk2,m2);syncPayrollTx(ni,mk2);closeModal();toast(edit?'Saved':'Added '+nm);
   }else{
-    var ac=val('f-acct'),mt=radio('mt'),amm=parseAmount(val('f-amt')),dt=val('f-date'),note=val('f-name').trim();
-    if(!ac||!S.accounts[ac]) return formErr('Choose an account.','f-acct');
+    var ac=val('f-acct'),to=val('f-to-acct'),mt=radio('mt'),amm=parseAmount(val('f-amt')),dt=val('f-date'),note=val('f-name').trim();
+    if(!ac||!S.accounts[ac]) return formErr(mt==='transfer'?'Choose a source account.':'Choose an account.','f-acct');
+    if(mt==='transfer'&&(!to||!S.accounts[to])) return formErr('Choose a destination account.','f-to-acct');
+    if(mt==='transfer'&&to===ac) return formErr('Choose two different accounts.','f-to-acct');
     if(amm==null) return formErr('Enter an amount greater than zero.','f-amt');
     if(!validDate(dt)) return formErr('Pick a date.','f-date');
     var a=S.accounts[ac];
     if(dt<a.asOf) return formErr('That date is before '+a.name+' started on '+shortDate(a.asOf)+' '+a.asOf.slice(0,4)+'. Pick a later date.','f-date');
-    var cur=balanceAt(ac)||0;if(edit&&edit.tx.account===ac&&edit.tx.date>=a.asOf)cur+=edit.tx.type==='deposit'?-edit.tx.amount:edit.tx.amount;
-    if(mt==='withdraw'&&amm>r2(cur)+0.004) return formErr('That is more than the '+money(cur)+' in '+a.name+'.','f-amt');
-    var id=edit?edit.tx.id:uid();setDoc('tx',id,{account:ac,type:mt,amount:amm,date:dt,note:note,bill:null});closeModal();toast(edit?'Saved':(mt==='deposit'?'Deposit':'Withdrawal')+' recorded · '+a.name+' now '+money(balanceAt(ac)));
+    if(mt==='transfer'&&dt<S.accounts[to].asOf) return formErr('That date is before '+S.accounts[to].name+' started on '+shortDate(S.accounts[to].asOf)+' '+S.accounts[to].asOf.slice(0,4)+'. Pick a later date.','f-date');
+    var cur=balanceAt(ac)||0;
+    if(edit&&edit.tx.date>=a.asOf&&edit.tx.date<=todayStr()){
+      if(edit.tx.account===ac)cur-=edit.tx.type==='deposit'?edit.tx.amount:-edit.tx.amount;
+      else if(edit.tx.type==='transfer'&&edit.tx.toAccount===ac)cur-=edit.tx.amount;
+    }
+    if((mt==='withdraw'||mt==='transfer')&&amm>r2(cur)+0.004) return formErr('That is more than the '+money(cur)+' in '+a.name+'.','f-amt');
+    var id=edit?edit.tx.id:uid();setDoc('tx',id,{account:ac,toAccount:mt==='transfer'?to:'',type:mt,amount:amm,date:dt,note:note,bill:null});closeModal();
+    toast(edit?'Saved':mt==='transfer'?'Transfer recorded · '+a.name+' → '+S.accounts[to].name:(mt==='deposit'?'Deposit':'Withdrawal')+' recorded · '+a.name+' now '+money(balanceAt(ac)));
   }
 }
 function modalDelete(btn){
   var c=entryCtx;if(!c||!c.edit)return;
   confirmClick(btn,function(){
     if(c.edit.it)deleteItem(c.edit.k,c.edit.it.id);
-    else if(c.edit.inc){var m=clone(getMonth(c.edit.k));m.income=m.income.filter(function(i){return i.id!==c.edit.inc.id});setDoc('months',c.edit.k,m)}
+    else if(c.edit.inc){var m=clone(getMonth(c.edit.k));m.income=m.income.filter(function(i){return i.id!==c.edit.inc.id});setDoc('months',c.edit.k,m);var pid='income-'+c.edit.inc.id;if(S.tx[pid])delDoc('tx',pid)}
     else if(c.edit.tx)delDoc('tx',c.edit.tx.id);
     closeModal();toast('Deleted');
   });
@@ -1048,6 +1107,7 @@ function openAccount(id){
     +'<label class="f">Starting balance'+amtField('a-open',a?a.opening:'')+'</label></div>'
     +'<label class="f">Starting balance as of<input class="in" id="a-asof" type="date" value="'+(a?a.asOf:todayStr())+'"></label>'
     +'<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="a-in"'+(!a||a.inTotal?' checked':'')+'> Count in total money</label>'
+    +'<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="a-payroll"'+(a&&a.payroll?' checked':'')+'> Use as payroll account <span class="sub">(only one account at a time)</span></label>'
     +'<div><b style="font-size:.9rem;font-weight:500">Held for others (optional)</b><p class="sub">Money in this account that is not yours, such as a debt you are holding.</p><div id="em-list" style="display:flex;flex-direction:column;gap:6px;margin-top:6px">'+((a&&a.earmarks)||[]).map(emRow).join('')+'</div><button type="button" class="btn sm" data-act="em-add" style="margin-top:6px">'+ICON.plus+'Add row</button></div>'
     +'<div class="err" id="f-err" role="alert" hidden></div><div class="acts">'+(a?'<button type="button" class="btn danger sp" data-act="acct-del">Delete account</button>':'')+'<button type="button" class="btn" data-act="close">Cancel</button><button type="submit" class="btn pri">'+(a?'Save':'Add account')+'</button></div></form>';
   openModal(html,a?'Edit account':'Add account');
@@ -1061,13 +1121,15 @@ function submitAccount(){
   $$('#em-list .em-row').forEach(function(r){var ins=$$('input',r),l=ins[0].value.trim(),a=ins[1].value.trim();if(!l&&!a)return;var n=parseAmount(a);if(!l||n==null){bad=true;return}ems.push({id:uid(),label:l,amount:n})});
   if(bad) return formErr('Each held-for-others row needs a label and an amount greater than zero.');
   var id=acctCtx.id||uid(),old=S.accounts[id];
-  setDoc('accounts',id,{name:name,kind:val('a-kind'),opening:op,asOf:asof,inTotal:$('#a-in').checked,earmarks:ems,order:old?old.order:Date.now(),bg:old&&old.bg?old.bg:null});
+  var payroll=$('#a-payroll').checked;
+  if(payroll)Object.keys(S.accounts).forEach(function(aid){if(aid!==id&&S.accounts[aid].payroll)setDoc('accounts',aid,Object.assign({},S.accounts[aid],{payroll:false}))});
+  setDoc('accounts',id,{name:name,kind:val('a-kind'),opening:op,asOf:asof,inTotal:$('#a-in').checked,payroll:payroll,earmarks:ems,order:old?old.order:Date.now(),bg:old&&old.bg?old.bg:null});
   closeModal();toast(old?'Saved':name+' added');
 }
 function deleteAccount(btn){
   var id=acctCtx.id;
   confirmClick(btn,function(){
-    Object.keys(S.tx).forEach(function(t){if(S.tx[t].account===id)delDoc('tx',t)});
+    Object.keys(S.tx).forEach(function(t){if(S.tx[t].account===id||S.tx[t].toAccount===id)delDoc('tx',t)});
     Object.keys(S.months).forEach(function(k){var m=clone(S.months[k]),ch=false;(m.items||[]).forEach(function(i){if(i.account===id){i.account='';ch=true}});if(ch)setDoc('months',k,m)});
     delDoc('accounts',id);closeModal();toast('Account deleted');
   });
@@ -1114,9 +1176,10 @@ function readBackup(file){
       var o=JSON.parse(String(fr.result));
       if(!o||o.app!=='payday-ledger'||typeof o.accounts!=='object'||typeof o.months!=='object')throw 0;
       var clean={settings:normSettings(o.settings),accounts:{},months:{},tx:{},goals:{}};
-      Object.keys(o.accounts||{}).forEach(function(id){var a=o.accounts[id];if(a&&typeof a.name==='string'&&isFinite(a.opening)&&validDate(a.asOf))clean.accounts[id]={name:a.name.slice(0,40),kind:['bank','ewallet','cash'].indexOf(a.kind)>=0?a.kind:'bank',opening:Number(a.opening),asOf:a.asOf,inTotal:a.inTotal!==false,earmarks:(Array.isArray(a.earmarks)?a.earmarks:[]).filter(function(e){return e&&typeof e.label==='string'&&isFinite(e.amount)}).map(function(e){return{id:String(e.id||uid()),label:e.label.slice(0,40),amount:Number(e.amount)}}),order:Number(a.order)||0,bg:cleanBg(a.bg)}});
+      var payrollAssigned=false;
+      Object.keys(o.accounts||{}).forEach(function(id){var a=o.accounts[id];if(a&&typeof a.name==='string'&&isFinite(a.opening)&&validDate(a.asOf)){var payroll=!!a.payroll&&!payrollAssigned;if(payroll)payrollAssigned=true;clean.accounts[id]={name:a.name.slice(0,40),kind:['bank','ewallet','cash'].indexOf(a.kind)>=0?a.kind:'bank',opening:Number(a.opening),asOf:a.asOf,inTotal:a.inTotal!==false,payroll:payroll,earmarks:(Array.isArray(a.earmarks)?a.earmarks:[]).filter(function(e){return e&&typeof e.label==='string'&&isFinite(e.amount)}).map(function(e){return{id:String(e.id||uid()),label:e.label.slice(0,40),amount:Number(e.amount)}}),order:Number(a.order)||0,bg:cleanBg(a.bg)}}});
       Object.keys(o.months||{}).forEach(function(k){var m=o.months[k];if(validYM(k)&&m)clean.months[k]={income:(Array.isArray(m.income)?m.income:[]).filter(function(x){return x&&isFinite(x.amount)&&typeof x.label==='string'}).map(function(x){return{id:String(x.id||uid()),label:x.label.slice(0,40),kind:x.kind==='deduction'?'deduction':'income',amount:Number(x.amount),cutoff:String(x.cutoff)}}),items:(Array.isArray(m.items)?m.items:[]).filter(function(x){return x&&isFinite(x.amount)&&typeof x.name==='string'&&['needs','wants','savings'].indexOf(x.group)>=0}).map(function(x){return{id:String(x.id||uid()),name:x.name.slice(0,60),amount:Number(x.amount),group:x.group,cutoff:String(x.cutoff),paid:!!x.paid,paidOn:x.paid&&validDate(x.paidOn)?x.paidOn:null,account:clean.accounts[x.account]?x.account:''}})}});
-      Object.keys(o.tx||{}).forEach(function(id){var t=o.tx[id];if(t&&clean.accounts[t.account]&&isFinite(t.amount)&&validDate(t.date)&&(t.type==='deposit'||t.type==='withdraw'))clean.tx[id]={account:t.account,type:t.type,amount:Number(t.amount),date:t.date,note:String(t.note||'').slice(0,80),bill:t.bill?String(t.bill):null}});
+      Object.keys(o.tx||{}).forEach(function(id){var t=o.tx[id],transfer=t&&t.type==='transfer';if(t&&clean.accounts[t.account]&&isFinite(t.amount)&&validDate(t.date)&&((t.type==='deposit'||t.type==='withdraw')||transfer&&clean.accounts[t.toAccount]&&t.toAccount!==t.account))clean.tx[id]={account:t.account,toAccount:transfer?t.toAccount:'',type:t.type,amount:Number(t.amount),date:t.date,note:String(t.note||'').slice(0,80),bill:t.bill?String(t.bill):null,payrollIncome:typeof t.payrollIncome==='string'?t.payrollIncome:''}});
       Object.keys(o.goals||{}).forEach(function(id){var g=o.goals[id];if(g&&typeof g.name==='string'&&isFinite(g.target)&&isFinite(g.saved))clean.goals[id]={name:g.name.slice(0,50),target:Number(g.target),saved:Number(g.saved),order:Number(g.order)||0}});
       pendingImport=clean;
       openModal('<p>This backup has <b>'+Object.keys(clean.accounts).length+' account(s)</b>, <b>'+Object.keys(clean.months).length+' month(s)</b> and <b>'+Object.keys(clean.goals).length+' goal(s)</b>. Restoring replaces everything in your ledger now.</p><div class="acts" style="margin-top:12px"><button type="button" class="btn" data-act="close">Cancel</button><button type="button" class="btn pri" data-act="import-go">Replace my ledger</button></div>','Restore this backup?');
@@ -1162,7 +1225,7 @@ document.addEventListener('click',function(e){
     case 'toggle':togglePaid(d.k,d.id);break;
     case 'quick':openEntry({type:'expense'});break;
     case 'add':openEntry({type:d.type,group:d.group,cutoff:d.cutoff});break;
-    case 'tab':openEntry({type:d.type});break;
+    case 'tab':openEntry({type:d.type,mtype:d.mtype},true);break;
     case 'edit-item':openEntry({editItem:{k:d.k,id:d.id}});break;
     case 'edit-income':openEntry({editIncome:{k:d.k,id:d.id}});break;
     case 'edit-tx':openEntry({editTx:d.id});break;
@@ -1221,6 +1284,7 @@ document.addEventListener('submit',function(e){
 });
 document.addEventListener('change',function(e){
   var t=e.target;
+  if(t.name==='mt'){var toWrap=$('#f-to-wrap');if(toWrap)toWrap.hidden=radio('mt')!=='transfer';return}
   if(t.id==='bg-file'){var fl=t.files&&t.files[0];t.value='';if(fl)resizePhoto(fl).then(function(d){bgCtx.sel={type:'photo',data:d};bgPreview()},function(){formErr('That photo could not be used. Try a JPG or PNG image.')});return}
   if(t.id==='imp'){readBackup(t.files&&t.files[0]);t.value='';return}
   if(t.name==='theme'){setTheme(t.value);return}
