@@ -46,7 +46,7 @@ p{margin:0}
 .wrap{max-width:1180px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:14px 120px}
 
 /* header */
-.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding-block:6px 14px}
+.top{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding-block:6px 14px}
 .brand{font-family:var(--display);font-weight:700;font-size:1.2rem;display:flex;align-items:center;gap:9px;margin-right:auto}
 .brand i{width:30px;height:30px;border-radius:8px;background:var(--yellow);color:var(--yellow-ink);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:1rem}
 .monthbar{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
@@ -288,6 +288,8 @@ tr.hl td:first-child{background:var(--surface2)}
 .dlg .acts .sp{margin-right:auto}
 .em-row{display:grid;grid-template-columns:1fr 130px 34px;gap:6px;align-items:center}
 @media (max-width:560px){
+  .top{padding-right:52px}
+  .nav a.settings-link{position:absolute;top:6px;right:4px;z-index:2}
   #modal{align-items:flex-end;padding:0}
   .dlg{border-radius:18px 18px 0 0;width:100%;max-height:92%;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
   .fab{padding:14px}.fab span{display:none}
